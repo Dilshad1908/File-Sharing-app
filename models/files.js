@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const Schema=mongoose.Schema
+// const Schema=mongoose.Schema
 
 const fileSchema= new mongoose.Schema({
     filename:{type:String, required:true},
