@@ -15,6 +15,7 @@ app.set('views',path.join(__dirname,'/views'))
 
 
 // middleware
+app.use(express.json());
 app.use('/api/file',require('./routes/files'))
 app.use('/file',require('./routes/show'))
 app.use('/file/download',require('./routes/download'))

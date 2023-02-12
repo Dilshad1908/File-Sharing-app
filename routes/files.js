@@ -55,6 +55,45 @@ router.post('/',(req,res)=>{
     })
 })
 
+router.post('/send',async (req,res)=>{
+    // console.log(req.body)
+    const {uuid,emailTo,emailFrom}=req.body
+    
+    // validate request
+    if(!uuid || !emailTo || !emailFrom){
+        res.status(422).send({error:"All fields are required"})
+    }
+    // get data from database
+    const file= await File.findOne({uuid:uuid})
+    // console.log(file.sender)
+    if(file.sender){
+        res.status(422).send({error:"email has already sent"})
+
+    }
+
+    file.sender=emailFrom;
+    file.receiver=emailTo
+    const response=file.save();
+
+    // send email
+
+    const sendMail=require('../services/emailServices')
+    sendMail({
+        to:emailTo,
+        from:emailFrom,
+        subject:'inShare file haring',
+        text:`${emailFrom} shared a file with you.`,
+        html:require('../services/emailTemplate')({
+            emailFrom:emailFrom,
+            downloadLink:`${process.env.APP_BASE_URL}/file/${file.uuid}`,
+            size:parseInt(file.size/1000) +'kb',
+            expires:'24 hours' 
+        })
+    })
+     res.send({success:'email sent successfully'})
+// problem when we use return it shows error that  'cannot set headers after they are sent to the client'
+    //  res.send({success:'email sent successfully'})
+})
 
 
 
