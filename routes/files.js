@@ -66,10 +66,10 @@ router.post('/send',async (req,res)=>{
     // get data from database
     const file= await File.findOne({uuid:uuid})
     // console.log(file.sender)
-    if(file.sender){
-        res.status(422).send({error:"email has already sent"})
+    // if(file.sender){
+    //     res.status(422).send({error:"email has already sent"})
 
-    }
+    // }
 
     file.sender=emailFrom;
     file.receiver=emailTo
@@ -81,18 +81,20 @@ router.post('/send',async (req,res)=>{
     sendMail({
         to:emailTo,
         from:emailFrom,
-        subject:'inShare file haring',
+        subject:'File sharing',
         text:`${emailFrom} shared a file with you.`,
         html:require('../services/emailTemplate')({
             emailFrom:emailFrom,
             downloadLink:`${process.env.APP_BASE_URL}/file/${file.uuid}`,
             size:parseInt(file.size/1000) +'kb',
             expires:'24 hours' 
+
         })
     })
-     res.send({success:'email sent successfully'})
-// problem when we use return it shows error that  'cannot set headers after they are sent to the client'
-    //  res.send({success:'email sent successfully'})
+
+    return res.send({success:"message sent successfully"})
+
+    
 })
 
 
