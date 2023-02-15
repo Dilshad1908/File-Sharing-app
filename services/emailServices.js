@@ -5,7 +5,7 @@ require('dotenv').config()
 async function sendMail({from,to,subject,text,html}){
 // setting transport
     let transporter=nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+        host:process.env.SMTP_HOST,
         port: 465,
         secure:true,
     auth: {
@@ -16,7 +16,7 @@ async function sendMail({from,to,subject,text,html}){
 
 // sending email
     let info=await transporter.sendMail({
-        from:`Dilshad${from}`,
+        from:from,
         to:to,
         subject:subject,
         text:text,
