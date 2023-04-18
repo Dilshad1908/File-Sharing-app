@@ -28,7 +28,7 @@ router.post('/',(req,res)=>{
     upload(req,res,async (err)=>{
         // validate request
     if(!req.file){
-        return res.json({error:'All fields are required'})
+        return res.json({error:'Choose the file'})
     }
 
 
@@ -74,9 +74,7 @@ router.post('/send',async (req,res)=>{
     file.sender=emailFrom;
     file.receiver=emailTo
     const response=file.save();
-
     // send email
-
     const sendMail=require('../services/emailServices')
     sendMail({
         to:emailTo,
@@ -92,7 +90,7 @@ router.post('/send',async (req,res)=>{
         })
     })
 
-    return res.send({success:"message sent successfully"})
+    return res.send({success:`{message sent successfully to ${emailTo}`})
 
     
 })

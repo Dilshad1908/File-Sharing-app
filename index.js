@@ -2,11 +2,19 @@ const express=require('express');
 const app=express();
 const path=require('path')
 const PORT= process.env.PORT ||3000;
+const cors=require('cors')
 
 app.use(express.static('public'))
 const connectDB=require('./config/db')
 connectDB()
 
+// cors
+
+const corsOptions={
+    origin:process.env.ALLOWED_CLIENTS.split(',')
+}
+
+app.use(cors(corsOptions))
 
 // set view engine 
 app.set('view engine','ejs')
