@@ -16,8 +16,7 @@ const corsOptions={
     // methods:['GET','POST'],
     // 'Access-Control-Allow-Origin':'*',
     // 'Access-Control-Allow-Methods':'GET,POST',
-    "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+    "Access-Control-Allow-Origin":"*"
 }
 
 app.use(cors(corsOptions))
