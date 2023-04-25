@@ -11,8 +11,8 @@ connectDB()
 // cors
 
 const corsOptions={
-    origin:process.env.ALLOWED_CLIENTS.split(','),
-    // origin:true,
+    // origin:process.env.ALLOWED_CLIENTS.split(','),
+    origin:"*",
     methods:['GET','POST'],
 }
 
