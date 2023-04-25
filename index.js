@@ -12,8 +12,12 @@ connectDB()
 
 const corsOptions={
     // origin:process.env.ALLOWED_CLIENTS.split(','),
-    origin:"*",
-    methods:['GET','POST'],
+    // origin:"*",
+    // methods:['GET','POST'],
+    // 'Access-Control-Allow-Origin':'*',
+    // 'Access-Control-Allow-Methods':'GET,POST',
+    "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
 }
 
 app.use(cors(corsOptions))
