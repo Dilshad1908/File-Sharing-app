@@ -10,13 +10,14 @@ connectDB()
 
 // cors
 
-// const corsOptions={
-//     origin:'http://127.0.0.1:5500'
-// }
+const corsOptions={
+    origin:process.env.ALLOWED_CLIENTS.split(',')
+}
 
-app.use(cors({
-    origin:'http://127.0.0.1:5500',
-}))
+app.use(cors(corsOptions))
+// app.use(cors({
+//     origin:'http://127.0.0.1:5500',
+// }))
 
 // set view engine 
 app.set('view engine','ejs')
