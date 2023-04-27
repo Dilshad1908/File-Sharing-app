@@ -2,7 +2,7 @@ const express=require('express');
 const app=express();
 const path=require('path')
 const PORT= process.env.PORT ||3000;
-const cors=require('cors')
+const cors= require('cors')
 
 app.use(express.static('public'))
 const connectDB=require('./config/db')
@@ -10,16 +10,13 @@ connectDB()
 
 // cors
 
-const corsOptions={
-    // origin:process.env.ALLOWED_CLIENTS.split(','),
-    // origin:"*",
-    // methods:['GET','POST'],
-    // 'Access-Control-Allow-Origin':'*',
-    // 'Access-Control-Allow-Methods':'GET,POST',
-    "Access-Control-Allow-Origin":"*"
-}
+// const corsOptions={
+//     origin:'http://127.0.0.1:5500'
+// }
 
-app.use(cors(corsOptions))
+app.use(cors({
+    origin:'http://127.0.0.1:5500',
+}))
 
 // set view engine 
 app.set('view engine','ejs')
