@@ -16,7 +16,7 @@ router.get('/:uuid', (req,res)=>{
                 return res.render('download',{message:'something went wrong'})
 
             }
-             console.log(file)
+            //  console.log(file)
             return res.render('download',{
                 uuid:file.uuid,
                 fileName:file.filename,

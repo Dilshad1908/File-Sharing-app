@@ -49,7 +49,7 @@ router.post('/',(req,res)=>{
         const response= await file.save()
         // console.log(response.uuid)
         // APP_BASE_URL=http://localhost:3000 saved hai .env file me
-        return res.json({file:`${process.env.APP_BASE_URL}/files/${response.uuid}`})
+        return res.json({file:`${process.env.APP_BASE_URL}/file/${response.uuid}`})
         // link will appear like  http://localhost:3000/files/644tty-341635fscsdgfa 
 
     })
